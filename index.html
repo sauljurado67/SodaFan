@@ -89,20 +89,19 @@
         <div class="ventana" id="vent">
             <div id="cerrar"><a href="javascript:cerrar()"><img src="./img/error.png" alt=""></a></div>
             <h1 id="title">Registro</h1>
-            <form action="https://formsubmit.co/jurados888@gmail.com" method="POST" class="formulario" id="formulario">
+            <form class="formulario" id="formulario">
                 <div class="input-group">
                     <div class="input-field" id="nameInput">
                         <i class="valid fa-solid fa-user fa-xl"></i>
-                        <input type="text" required class="formInput" id="nombre" name="nombre" placeholder="Nombre">
+                        <input type="text" class="formInput" id="nombre" name="nombre" placeholder="Nombre">
                     </div>
                     <div class="input-field" id="emailInput">
                         <i class="valid fa-solid fa-envelope fa-xl"></i>
-                        <input type="email" required class="formInput" id="email" name="email" placeholder="Correo">
+                        <input type="email" class="formInput" id="email" name="email" placeholder="Correo">
                     </div>
                     <div class="input-field" id="passwordInput">
                         <i class="valid fa-solid fa-lock fa-xl"></i>
-                        <input type="password" required class="formInput" id="password" name="password"
-                            placeholder="Contraseña">
+                        <input type="password" class="formInput" id="password" name="password" placeholder="Contraseña">
                     </div>
                     <p>Olvidaste tu contraseña <a href="#">Click Aqui</a></p>
                 </div>
@@ -111,11 +110,10 @@
                     <button id="signIn" type="submit" class="disable">Login</button>
                 </div>
                 <label class="input-label">
-                    <input class="form-checkbox" required type="checkbox" name="terminos" id="terminos">
-                    Acepto los Terminos y Condiciones
+                    <input class="form-checkbox" type="checkbox" name="terminos" id="terminos">
+                    <h6 id="term">Acepto los Terminos y Condiciones</h6>
                 </label>
-                <input type="hidden" name="_next" value="https://sauljurado67.github.io/SodaFan/">
-                <input type="hidden" name="_captcha" value="false">
+                <p class="warnings" id="warnings"></p>
             </form>
         </div>
         <!-- SECCION BANNER -->

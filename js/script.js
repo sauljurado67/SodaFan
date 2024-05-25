@@ -136,80 +136,98 @@ let signUp = document.getElementById("signUp");
 let signIn = document.getElementById("signIn");
 let nameInput = document.getElementById("nameInput");
 let titu = document.getElementById("title");
+let condition = document.getElementById('terminos');
+let condi = document.getElementById('term')
 
 signIn.onclick = function() {
     nameInput.style.maxHeight = "0";
     titu.innerHTML = "Login";
+    condition.style.display = 'none';
+    condi.style.display = 'none';
     signUp.classList.add("disable");
     signIn.classList.remove("disable");
 }
 signUp.onclick = function() {
     nameInput.style.maxHeight = "60px";
     titu.innerHTML = "Registro";
+    condition.style.display = 'flex';
+    condi.style.display = 'flex';
     signUp.classList.remove("disable");
     signIn.classList.add("disable");
 }
 
 /*----------- Validacion de Registro ------------*/
 
-// const formulario = document.getElementById('formulario');
-// const inputs = document.querySelectorAll('#formulario input');
-
-// const expresiones = {
-// 	nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
-// 	email: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-// 	password: /^.{4,12}$/, // 4 a 12 digitos.
-// }
-
-// const campos = {
-//     nombre: false,
-//     email: false,
-//     password: false
-// };
-
-// const validarFormulario = (e) => {
-//     switch (e.target.name) {
-//         case "nombre":
-//             validarCampo(expresiones.nombre, e.target, 'nombre');
-//         break;
-//         case "email":
-//             validarCampo(expresiones.email, e.target, 'email');
-//         break;
-//         case "password":
-//             validarCampo(expresiones.password, e.target, 'password');
-//         break;
-//     }
-// }
+const nombre = document.getElementById('nombre');
+const email = document.getElementById('email');
+const pass = document.getElementById('password');
+const form = document.getElementById('formulario')
+const parrafo = document.getElementById('warnings')
 
 
-// const validarCampo = (expresion, input, campo) => {
-//     if (expresion.test(input.value)){
-//         document.getElementById(`${campo}Input`).classList.remove('input-field-incorrecto');
-//         document.getElementById(`${campo}Input`).classList.add('input-field-correcto');
-//         campos[campo] = true;
-//     } else {
-//         document.getElementById(`${campo}Input`).classList.add('input-field-incorrecto');
-//         document.getElementById(`${campo}Input`).classList.remove('input-field-correcto');
-//         campos[campo] = false;
-//     }
-// }
+form.addEventListener('submit', e=>{
+    if (signIn.classList.value == 'disable'){
+        e.preventDefault();
+        let warnings = '';
+        let regxEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+        let entrar = false;
+        parrafo.innerHTML = "";
 
+        if (nombre.value.length <6){
+            warnings += 'Nombre muy corto <br>'
+            entrar = true
+        };
+        console.log(regxEmail.test(email.value))
+        if (!regxEmail.test(email.value)){
+            warnings += 'El email no es valido <br>'
+            entrar = true
+        };
+        if (pass.value.length < 6){
+            warnings += 'La contraseña no es valida <br>'
+            entrar = true
+        };
+        if (!condition.checked) {
+            warnings += 'Debe aceptar los Terminos <br>'
+        }
+        if (entrar){
+            parrafo.innerHTML = warnings
+        } else {
+            parrafo.innerHTML = 'Enviado'
+        };
+        let emailR = email.value;
+        let passR = pass.value;
+        localStorage.setItem('email', emailR);
+        localStorage.setItem('password', passR);
 
-// inputs.forEach((input)=>{
-//     input.addEventListener('keyup', validarFormulario);
-//     input.addEventListener('blur', validarFormulario);
-// });
-
-
-
-// formulario.addEventListener('submit', (e)=> {
-//     e.preventDefault();
-
-//     const terminos = document.getElementById('terminos');
-//     if(campos.nombre && campos.email && campos.password && terminos.checked){
-//         formulario.reset();
-
-//     }
-// });
-
-
+    } else {
+        e.preventDefault();
+        let warnings = '';
+        let regxEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+        let entrar = false;
+        parrafo.innerHTML = "";
+        // if (nombre.value.length <6){
+        //     warnings += 'Nombre muy corto <br>'
+        //     entrar = true
+        // };
+        console.log(regxEmail.test(email.value))
+        if (!regxEmail.test(email.value)){
+            warnings += 'El email no es valido <br>'
+            entrar = true
+        };
+        if (pass.value.length < 6){
+            warnings += 'La contraseña no es valida <br>'
+            entrar = true
+        };
+        if (entrar){
+            parrafo.innerHTML = warnings
+        } else {
+            if (email.value == localStorage.getItem('email', '') &&  (pass.value == localStorage.getItem('password', ''))){
+                parrafo.innerHTML = 'Bienvenido'
+                alert('Bienvenido')
+                cerrar()
+            } else {
+                alert('Debe Registrarse')
+            }
+        };
+    };
+});
