@@ -182,7 +182,7 @@ body {
 }
 .radio{
     background-color: var(--bg-color);
-    width: 90%;
+    width: 45vh;
     color: #ffffff;
     font-family: Arial, Helvetica, sans-serif;
     font-size: clamp(1rem, 4vh,2rem);
@@ -594,6 +594,28 @@ form p a {
 }
 
 @media all and (max-width:1024px){
+    /*------ Radio ------*/
+    .radio {
+        width: 35vw;
+        margin-left: 5px;
+        top: 50%;
+        height: 30vh;
+        text-align: center;
+    }
+    .fm {
+        width: 98%;
+    }
+    .radio .titulo {
+        width: 40vw;
+        a {
+            width: 6vw;
+            font-size: 1rem;
+        }
+        h2, h3{
+            width: 30vw;
+            font-size: 1rem;
+        }
+    }
     /*---------- NAV PLAYER ----------*/
     .loader{
         margin-left: -5px;
@@ -664,7 +686,13 @@ form p a {
         width: 50%;
         height: 50%;
     }
-
+    .radio {
+        width: 55vw;
+        margin-left: 5px;
+        top: 55%;
+        height: 30vh;
+        text-align: center;
+    }
     /*----------- main player ---------*/
     .player{
         width: 50vw;
@@ -720,20 +748,16 @@ form p a {
     }
     /* radio */
     .radio {
-        display: flex;
-        flex-direction: row;
-        width: 90vw;
-        margin-left: 15px;
-        top: 60%;
-        height: 40vh;
+        width: 95vw;
+        margin-left: 5px;
+        top: 50%;
+        height: 30vh;
+        text-align: center;
     }
     .fm {
-        align-items: center;
-        justify-content: center;
-        height: 90%;
-        
+        width: 98%;
     }
-    .titulo {
+    .radio .titulo {
         width: 40vw;
         a {
             width: 6vw;
@@ -751,7 +775,7 @@ form p a {
         width: 100%;
     }
     .player-bar{
-        padding-top: 100px;
+        padding-top: 120px;
         flex-direction: column;
         align-items: center;
     }
@@ -788,9 +812,9 @@ form p a {
         width: 60%;
     }
     .login{
-        padding-top: 5px;
+        padding-top: 4px;
         height: 2rem;
-        margin: 30px 10px;
+        margin: 40px 0px 20px 10px;
     }
     /*--------- ventana login registro ----------*/
     .ventana{
