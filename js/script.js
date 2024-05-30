@@ -8,7 +8,8 @@ const current_audio = document.getElementById("current_audio");
 const progressContainer = document.querySelector(".progress_container");
 const progress = document.getElementById("progress");
 
-const songs = ["01-Soda Stereo-Nada Personal",
+const songs = [
+               "01-Soda Stereo-Nada Personal",
                "02-Soda Stereo Si No Fuera por Official Audio",
                "03-Soda Stereo Cuando Pase el Temblor Official Audio",
                "04-Soda Stereo Danza Rota Official Audio",
@@ -230,4 +231,91 @@ form.addEventListener('submit', e=>{
             }
         };
     };
+});
+
+
+
+/* ------------------------------------------------------ */
+
+
+
+// Función para buscar música
+async function fetchMusic(searchTerm) {
+    const response = await fetch(`https://itunes.apple.com/search?term=${encodeURIComponent(searchTerm)}&limit=10`);
+    const data = await response.json();
+    return data.results;
+}
+
+// Añadir un event listener al botón de búsqueda
+document.getElementById('searchButton').addEventListener('click', async () => {
+    const searchTerm = document.getElementById('searchTerm').value;
+    const data = await fetchMusic(searchTerm);
+    const audioElements = displayMusic(data);
+    console.log('Audio Elements:', audioElements);
+});
+
+// Función para mostrar los datos de la música y devolver los elementos de audio
+function displayMusic(data) {
+    if (Array.isArray(data)) {
+        // Limpiar resultados previos
+        const existingMusicPlayer = document.getElementById('music-playe');
+        if (existingMusicPlayer) {
+            existingMusicPlayer.remove();
+        }
+
+        // Crear un div para el reproductor de música
+        const musicDiv = document.createElement('section');
+        musicDiv.className = 'section-list';
+        musicDiv.id = 'music-playe';
+
+        // Array para almacenar los elementos de audio
+        const audioElements = [];
+
+        // Crear elementos para cada canción
+        for (let i = 0; i < data.length; i++) {
+            const track = data[i];
+            console.log(track);
+
+            // Crear un div para cada pista
+            const trackDiv = document.createElement('li');
+            trackDiv.className = 'track';
+
+            // Crear un título para la pista
+            const title = document.createElement('a');
+            title.textContent = track.trackName;
+            trackDiv.appendChild(title);
+
+            // Crear un elemento de audio
+            const audio = document.createElement('audio');
+            audio.controls = true;
+            audio.src = track.previewUrl; // Utiliza la URL de vista previa de la pista
+            trackDiv.appendChild(audio);
+
+            // Añadir el elemento de audio al array
+            audioElements.push(audio);
+
+            // Añadir el div de la pista al div del reproductor de música
+            musicDiv.appendChild(trackDiv);
+        }
+
+        // Obtener el elemento main y el div2
+        const mainElement = document.querySelector('main');
+        const div2 = document.getElementById('busca');
+
+        // Insertar el div del reproductor de música después de div2
+        mainElement.insertBefore(musicDiv, div2.nextSibling);
+
+        // Devolver el array de elementos de audio
+        return audioElements;
+    } else {
+        console.error('Se esperaba un array de pistas');
+        return [];
+    }
+}
+
+// Búsqueda inicial al cargar la página con un término predeterminado
+document.addEventListener('DOMContentLoaded', async () => {
+    const data = await fetchMusic('');
+    const audioElements = displayMusic(data);
+    console.log('Audio Elements:', audioElements);
 });

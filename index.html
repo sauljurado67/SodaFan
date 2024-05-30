@@ -26,7 +26,8 @@
             </div>
             <div class="buscar">
                 <div class="busc">
-                    <input class="inp" type="search" placeholder=" 🔍 Buscar">
+                    <input class="inp" type="search" value="Soda Stereo" id="searchTerm" placeholder=" 🔍 Buscar">
+                    <a href="#busca" id="searchButton">Buscar</a>
                 </div>
             </div>
         </nav>
@@ -44,7 +45,7 @@
                 <iframe class="fm"
                     src="https://us-b4-p-e-pb13-audio.cdn.mdstrm.com/live-audio-aw-bkp/60a2745ff943100826374a70?aid=60106eadf34de307dd720e7b&pid=ys3wCrPs0K74lqHBvELFrlTA9Ds0gOVp&sid=gDrogM5xI7X4D39oeE9HvCRBnYHqCwnY&uid=d9UggLEDBlyL0j3occBh2Y7NKki4Dvpv&es=us-b4-p-e-pb13-audio.cdn.mdstrm.com&ote=1715905310599&ot=sGOw97aUY0NI5bVENk0D4Q&proto=https&pz=us&cP=128000&awCollectionId=60106eadf34de307dd720e7b&aw_0_1st.playerId=mediastream-player-aspen-pie&liveId=60a2745ff943100826374a70&referer=https%3A%2F%2Fwww.planetaradios.com%2F&propertyName=mediastream-player-aspen-pie&listenerId=d9UggLEDBlyL0j3occBh2Y7NKki4Dvpv&amp;start=3"
                     title="YouTube video player" style="border: none;"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
             </div>
@@ -117,7 +118,7 @@
             </form>
         </div>
         <!-- SECCION BANNER -->
-        <section class="section-content">
+        <section class="section-content" id="content">
             <div class="banner">
                 <img src="./img/500x500-000000-80-0-0.jpg" alt="">
             </div>
@@ -127,7 +128,7 @@
                 <a href="#" onclick="playSong()">Reproducir</a>
             </div>
         </section>
-        <section class="section-list">
+        <section class="section-list" id="music-player">
             <h2>Lista de traks</h2>
             <ol>
                 <li><a href="#" onclick="playList(0)">Nada Personal</a></li>
@@ -142,6 +143,11 @@
                 <li><a href="#" onclick="playList(9)">Ecos</a></li>
             </ol>
         </section>
+
+        <div class="section-busc" id="busca">
+            <h3>Tu Busqueda</h3>
+        </div>
+
         <section class="section-video">
             <h2>Video - Soda Stereo - Nada Personal</h2>
             <div class="video">
